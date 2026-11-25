@@ -7,6 +7,9 @@ dist/
 # dependencies
 node_modules/
 
+# vercel configuration
+.vercel/
+
 # this project uses pnpm exclusively (see preinstall script) — no npm lockfile
 package-lock.json
 
@@ -18,10 +21,13 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
 
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
+
+# operating system files
+Thumbs.db
