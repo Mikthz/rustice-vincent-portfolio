@@ -1,0 +1,54 @@
+# Rustice Vincent Caldeo — IT Student Portfolio
+
+> A static personal portfolio website built with Astro, React, Tailwind CSS, and TypeScript.
+> It presents the owner's education, technical and soft skills, collaborative projects,
+> participation certificates, and contact links.
+
+## Site sections
+
+- About Me
+- Career Objectives
+- Education
+- Technical Skills
+- Soft Skills
+- My Projects (two collaborative projects)
+- Certificates & Participation (five documented certificates)
+- Get in Touch
+
+## Stack
+
+- **Astro** — static site generation and component composition
+- **React 19** — the original LetterGlitch canvas visual
+- **Tailwind CSS** — utility-first styling
+- **TypeScript** — typed React component and Astro tooling
+- **Montserrat** — local variable font
+- **pnpm** — package manager pinned to 11.2.2
+
+## Motion and interaction
+
+- Animated technology marquee using skills and tools represented in the portfolio
+- Expandable native HTML skill accordions
+- LetterGlitch canvas animation, paused when off-screen and disabled for reduced-motion users
+- Scroll-triggered card reveals and restrained hover transitions
+- Native video controls for locally hosted project demonstrations
+
+## Project notes
+
+- The Computer Parts Inventory Management System links to the archived repository:
+  https://github.com/Mikthz/New-ITE-2-Project
+- Angry Birds Face AR is presented as a collaborative project with a local gameplay demonstration.
+- Both projects were developed in 2026 by the same three-member team.
+- The inventory walkthrough and game recording are hosted locally under `public/videos/`.
+- No Firebase configuration or external runtime service is required.
+
+## Local development
+
+```bash
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+## Source attribution
+
+The site is based on the Dark Minimal template by Andres Hernandez and distributed by ThemeWagon.
+The original template attribution and license are retained in the website footer and LICENSE file.

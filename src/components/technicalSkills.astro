@@ -1,0 +1,341 @@
+---
+import LetterGlitch from "../React/LetterGlitch.tsx";
+
+const groups = [
+  {
+    number: "01",
+    title: "Programming & Web Development",
+    summary: "Languages and tools used to build web-based projects.",
+    items: ["Python", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Django"],
+  },
+  {
+    number: "02",
+    title: "Database Management",
+    summary: "Relational database systems used in coursework and application projects.",
+    items: ["PostgreSQL", "MySQL", "MariaDB"],
+  },
+  {
+    number: "03",
+    title: "Computer Vision · Basic Exposure",
+    summary: "Introductory, hands-on experience through a collaborative game project.",
+    items: ["OpenCV", "MediaPipe"],
+    note: "I am still new to computer vision and continue to build my understanding through practice.",
+  },
+  {
+    number: "04",
+    title: "Networking Fundamentals",
+    summary: "Foundational configuration and local network tasks.",
+    items: ["Ethernet cable creation", "IPv4 configuration", "LAN file sharing", "Shared folder configuration"],
+  },
+];
+---
+
+<section id="technical-skills" class="section-block">
+  <div class="page-width">
+    <p class="section-kicker">04 / Tools & Technologies</p>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-copy -mt-3 mb-8 max-w-2xl">Technologies and practical IT skills I have worked with through coursework and collaborative projects.</p>
+
+    <div class="skills-layout">
+      <div class="skill-accordions" aria-label="Technical skill categories" data-skill-accordions data-reveal>
+        {groups.map((group, index) => {
+          const triggerId = `skill-trigger-${index + 1}`;
+          const panelId = `skill-panel-${index + 1}`;
+
+          return (
+            <section class="skill-accordion panel" data-skill-accordion data-open="false">
+              <button
+                id={triggerId}
+                class="skill-accordion-trigger"
+                type="button"
+                data-skill-trigger
+                aria-expanded="false"
+                aria-controls={panelId}
+              >
+                <span class="skill-number">{group.number}</span>
+                <span class="skill-summary-copy">
+                  <strong>{group.title}</strong>
+                  <small>{group.summary}</small>
+                </span>
+                <svg class="skill-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+
+              <div
+                class="skill-panel"
+                id={panelId}
+                role="region"
+                aria-labelledby={triggerId}
+                aria-hidden="true"
+                inert
+              >
+                <div class="skill-panel-inner">
+                  <div class="skill-accordion-content">
+                    <div class="skill-tags">
+                      {group.items.map((item) => <span class="skill-tag">{item}</span>)}
+                    </div>
+                    {group.note && <p class="skill-note">{group.note}</p>}
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <aside class="skill-visual panel" data-reveal style="--reveal-delay: 180ms" aria-label="Decorative animated code visual">
+        <div class="skill-visual-topline">
+          <span><i aria-hidden="true"></i> LEARNING / BUILDING</span>
+          <span class="visual-status">IN PROGRESS</span>
+        </div>
+        <div class="glitch-stage">
+          <LetterGlitch
+            client:visible
+            glitchColors={["#5e4491", "#A476FF", "#241a38"]}
+            glitchSpeed={58}
+            centerVignette={false}
+            outerVignette={true}
+            smooth={true}
+          />
+        </div>
+        <div class="skill-visual-caption">
+          <div>
+            <span class="caption-label">A PRACTICAL APPROACH</span>
+            <strong>Build. Test. Improve.</strong>
+          </div>
+          <span class="visual-brackets" aria-hidden="true">{ }</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+  const accordionRoot = document.querySelector<HTMLElement>("[data-skill-accordions]");
+
+  if (accordionRoot && accordionRoot.dataset.initialized !== "true") {
+    accordionRoot.dataset.initialized = "true";
+
+    accordionRoot.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const trigger = event.target.closest<HTMLButtonElement>("[data-skill-trigger]");
+      if (!trigger || !accordionRoot.contains(trigger)) return;
+
+      const selected = trigger.closest<HTMLElement>("[data-skill-accordion]");
+      if (!selected) return;
+
+      // Clicking the open category closes it; clicking another opens that one.
+      const shouldOpen = selected.dataset.open !== "true";
+
+      accordionRoot.querySelectorAll<HTMLElement>("[data-skill-accordion]").forEach((item) => {
+        const isSelected = item === selected;
+        const open = isSelected && shouldOpen;
+        const button = item.querySelector<HTMLButtonElement>("[data-skill-trigger]");
+        const panel = item.querySelector<HTMLElement>(".skill-panel");
+
+        item.dataset.open = String(open);
+        button?.setAttribute("aria-expanded", String(open));
+
+        if (panel) {
+          panel.setAttribute("aria-hidden", String(!open));
+          panel.toggleAttribute("inert", !open);
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .skills-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, .92fr);
+    align-items: stretch;
+    gap: 1.1rem;
+  }
+
+  .skill-accordions { display: grid; align-content: start; gap: .75rem; }
+
+  .skill-accordion {
+    overflow: hidden;
+    transition: border-color .25s ease, background .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+
+  .skill-accordion:hover,
+  .skill-accordion[data-open="true"] {
+    border-color: #a476ff5c;
+    box-shadow: 0 12px 36px #00000020;
+  }
+
+  .skill-accordion-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 5.25rem;
+    align-items: center;
+    gap: .9rem;
+    padding: 1rem 1.15rem;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .skill-accordion-trigger:hover { background: #ffffff05; }
+
+  .skill-accordion-trigger:focus-visible {
+    outline: 2px solid var(--sec);
+    outline-offset: -4px;
+    border-radius: 1rem;
+  }
+
+  .skill-number {
+    display: grid;
+    width: 2.55rem;
+    height: 2.55rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #a476ff48;
+    border-radius: .8rem;
+    background: #a476ff12;
+    color: #d3bdff;
+    font-size: .75rem;
+    font-weight: 750;
+  }
+
+  .skill-summary-copy { display: grid; min-width: 0; flex: 1; gap: .25rem; }
+  .skill-summary-copy strong { color: var(--white); font-size: .94rem; font-weight: 650; line-height: 1.35; }
+  .skill-summary-copy small { color: var(--muted); font-size: .71rem; line-height: 1.45; }
+
+  .skill-chevron {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: 0 0 auto;
+    color: #cdb4ff;
+    transition: transform .32s cubic-bezier(.2, .7, .2, 1);
+  }
+
+  .skill-accordion[data-open="true"] .skill-chevron { transform: rotate(180deg); }
+
+  /* Keep the panel in the layout tree so it can animate every time it opens or closes. */
+  .skill-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      grid-template-rows .36s cubic-bezier(.2, .7, .2, 1),
+      opacity .28s ease;
+  }
+
+  .skill-accordion[data-open="true"] > .skill-panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .skill-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .skill-accordion-content {
+    padding: 0 1.15rem 1.2rem 4.55rem;
+    opacity: 0;
+    transform: translateY(-.45rem);
+    transition:
+      opacity .26s ease,
+      transform .36s cubic-bezier(.2, .7, .2, 1);
+  }
+
+  .skill-accordion[data-open="true"] .skill-accordion-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .04s;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .skill-tag { transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease; }
+  .skill-tag:hover { transform: translateY(-2px); border-color: #a476ff70; background: #a476ff14; color: white; }
+  .skill-note { margin: .8rem 0 0; color: var(--muted); font-size: .75rem; line-height: 1.65; }
+
+  .skill-visual {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1rem;
+    background: radial-gradient(ellipse at 52% 42%, #2c203e 0%, #19161f 43%, #141414 100%);
+  }
+
+  .skill-visual-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    color: #c8c0d4;
+    font-size: .58rem;
+    font-weight: 750;
+    letter-spacing: .13em;
+  }
+
+  .skill-visual-topline > span:first-child { display: inline-flex; align-items: center; gap: .5rem; }
+  .skill-visual-topline i { display: block; width: .42rem; height: .42rem; border-radius: 50%; background: #a476ff; box-shadow: 0 0 12px #a476ff; animation: status-pulse 2.2s ease-in-out infinite; }
+  .visual-status { color: #8c8598; font-size: .52rem; }
+
+  .glitch-stage {
+    width: 100%;
+    height: clamp(14rem, 24vw, 19rem);
+    margin: .8rem 0;
+    overflow: hidden;
+    border-radius: .85rem;
+    opacity: .9;
+  }
+
+  .skill-visual-caption {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid #ffffff18;
+    padding: 1rem .15rem .1rem;
+  }
+
+  .skill-visual-caption > div { display: grid; gap: .3rem; }
+  .caption-label { color: #a69bb9; font-size: .56rem; font-weight: 700; letter-spacing: .16em; }
+  .skill-visual-caption strong { color: var(--white); font-size: 1.05rem; font-weight: 600; letter-spacing: -.035em; }
+  .visual-brackets { color: #a476ff; font-family: ui-monospace, monospace; font-size: 1.8rem; line-height: 1; }
+
+  @keyframes status-pulse {
+    0%, 100% { opacity: .65; box-shadow: 0 0 5px #a476ff; }
+    50% { opacity: 1; box-shadow: 0 0 13px #a476ff; }
+  }
+
+  @media (max-width: 900px) {
+    .skills-layout { grid-template-columns: 1fr; }
+    .skill-visual { min-height: 18rem; }
+    .glitch-stage { height: 15rem; }
+  }
+
+  @media (max-width: 520px) {
+    .skill-accordion-trigger { gap: .65rem; padding: .9rem; }
+    .skill-summary-copy strong { font-size: .86rem; }
+    .skill-summary-copy small { font-size: .66rem; }
+    .skill-accordion-content { padding: 0 .9rem 1rem 4rem; }
+    .skill-visual-topline { font-size: .52rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-visual-topline i { animation: none; }
+    .skill-chevron,
+    .skill-panel,
+    .skill-accordion-content,
+    .skill-tag,
+    .skill-accordion { transition: none; }
+  }
+</style>

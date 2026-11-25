@@ -1,0 +1,154 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-accent" aria-hidden="true"></div>
+  <div class="page-width footer-inner">
+    <div class="footer-main">
+      <div class="footer-identity">
+        <span class="footer-monogram" aria-hidden="true">RVC</span>
+        <div>
+          <p class="footer-name">Rustice Vincent Caldeo</p>
+          <p class="footer-role">Information Technology Student</p>
+        </div>
+      </div>
+
+      <div class="footer-actions">
+        <a class="footer-social" href="mailto:yesreck@gmail.com" aria-label="Send an email to Rustice Vincent Caldeo" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.5 6.75A1.75 1.75 0 0 1 5.25 5h13.5a1.75 1.75 0 0 1 1.75 1.75v10.5A1.75 1.75 0 0 1 18.75 19H5.25a1.75 1.75 0 0 1-1.75-1.75V6.75Z" stroke="currentColor" stroke-width="1.6"/><path d="m4 6.5 8 6.25 8-6.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="footer-social" href="https://github.com/Mikthz" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.31-3.76-1.31-.5-1.28-1.24-1.62-1.24-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.7-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.6 5.21-5.08 5.49.4.35.75 1.02.75 2.06v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+        </a>
+        <a class="footer-social" href="https://www.linkedin.com/in/rustice-vincent-caldeo-a36b33446/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.2 3.5a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8ZM3.6 9h3.2v11.4H3.6V9Zm5.3 0H12v1.55h.05c.43-.82 1.49-1.68 3.07-1.68 3.28 0 3.88 2.16 3.88 4.96v6.57h-3.2v-5.82c0-1.39-.03-3.18-1.94-3.18s-2.24 1.52-2.24 3.08v5.92H8.9V9Z"/></svg>
+        </a>
+        <a class="footer-back-top" href="#about">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {currentYear} Rustice Vincent Caldeo. All rights reserved.</p>
+      <p class="footer-credit">Based on the <a href="https://github.com/Gothsec" target="_blank" rel="noopener noreferrer">Dark Minimal template by Andres Hernandez</a>, distributed by <a href="https://themewagon.com" target="_blank" rel="noopener noreferrer">ThemeWagon</a>.</p>
+      <span class="footer-built">Built with Astro, React,  &amp; Tailwind CSS</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem -1.25rem 0;
+    border-top: 1px solid var(--line);
+    padding: 2.7rem 0 2rem;
+    background: linear-gradient(180deg, #17151b 0%, #101010 88%);
+  }
+  .site-footer .footer-inner {
+    width: min(calc(100% - 2.5rem), 1080px);
+    margin-inline: auto;
+  }
+
+  .footer-accent {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 42%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a476ff, #dfcbff, transparent);
+    animation: footer-glow 7s ease-in-out infinite alternate;
+  }
+
+  .footer-main,
+  .footer-identity,
+  .footer-actions,
+  .footer-bottom { display: flex; align-items: center; }
+  .footer-main { justify-content: space-between; gap: 2rem; padding-bottom: 2rem; }
+  .footer-identity { gap: .9rem; }
+
+  .footer-monogram {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid #a476ff66;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #a476ff32, #a476ff0b);
+    color: #e4d7ff;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: -.04em;
+    box-shadow: inset 0 0 18px #a476ff0d;
+  }
+
+  .footer-name { margin: 0; color: var(--white); font-size: .95rem; font-weight: 700; }
+  .footer-role { margin: .25rem 0 0; color: var(--muted); font-size: .73rem; }
+  .footer-actions { gap: .6rem; }
+
+  .footer-social {
+    display: grid;
+    width: 2.55rem;
+    height: 2.55rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: .85rem;
+    background: #ffffff05;
+    color: var(--white-icon);
+    transition: border-color .22s ease, color .22s ease, background .22s ease, transform .22s ease;
+  }
+
+  .footer-social svg { width: 1.1rem; height: 1.1rem; }
+  .footer-social:hover { transform: translateY(-3px); border-color: #a476ff75; background: #a476ff14; color: white; }
+
+  .footer-back-top {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    margin-left: .35rem;
+    border: 1px solid #a476ff55;
+    border-radius: 999px;
+    padding: .72rem .95rem;
+    color: #d8c7fa;
+    font-size: .72rem;
+    font-weight: 650;
+    transition: background .22s ease, transform .22s ease;
+  }
+
+  .footer-back-top span { font-size: 1rem; transition: transform .22s ease; }
+  .footer-back-top:hover { transform: translateY(-2px); background: #a476ff18; }
+  .footer-back-top:hover span { transform: translateY(-3px); }
+
+  .footer-bottom {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .7rem 1.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    color: var(--muted);
+    font-size: .66rem;
+    line-height: 1.65;
+  }
+
+  .footer-bottom p { margin: 0; }
+  .footer-credit a { color: #cbb4f3; text-decoration: underline; text-decoration-color: #a476ff55; text-underline-offset: 3px; }
+  .footer-credit a:hover { color: white; }
+  .footer-built { color: #77727f; }
+
+  @keyframes footer-glow {
+    from { transform: translateX(-10%); opacity: .5; }
+    to { transform: translateX(150%); opacity: 1; }
+  }
+
+  @media (max-width: 700px) {
+    .site-footer { padding-bottom: 6.2rem; }
+    .footer-main { align-items: flex-start; flex-direction: column; gap: 1.35rem; }
+    .footer-actions { flex-wrap: wrap; }
+    .footer-bottom { align-items: flex-start; flex-direction: column; gap: .4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-accent { animation: none; }
+    .footer-social, .footer-back-top, .footer-back-top span { transition: none; }
+  }
+</style>

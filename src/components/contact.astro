@@ -1,0 +1,64 @@
+<section id="contact" class="section-block">
+  <div class="page-width">
+    <p class="section-kicker">08 / Contact</p>
+    <div class="grid gap-8 md:grid-cols-[.9fr_1.1fr] md:items-end">
+      <div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-copy max-w-md">I'm always open to connecting with others, exploring new opportunities, and learning from different experiences. Feel free to reach out through the following platforms.</p>
+      </div>
+      <div class="grid gap-3">
+        <a href="mailto:yesreck@gmail.com" class="contact-link">
+          <span class="contact-icon" aria-hidden="true">@</span>
+          <span><small>Email</small><strong>yesreck@gmail.com</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://github.com/Mikthz" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="contact-icon" aria-hidden="true">GH</span>
+          <span><small>GitHub</small><strong>github.com/Mikthz</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/rustice-vincent-caldeo-a36b33446/" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="contact-icon" aria-hidden="true">in</span>
+          <span><small>LinkedIn</small><strong>Rustice Vincent Caldeo</strong></span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: #ffffff05;
+    padding: 1rem;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .contact-link:hover {
+    border-color: #a476ff80;
+    background: #a476ff0d;
+    transform: translateY(-2px);
+  }
+  .contact-icon {
+    display: grid;
+    width: 2.7rem;
+    height: 2.7rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #a476ff45;
+    border-radius: .85rem;
+    background: #a476ff14;
+    color: #d5c0ff;
+    font-size: .95rem;
+    font-weight: 700;
+  }
+  .contact-link small,
+  .contact-link strong { display: block; }
+  .contact-link small { color: var(--muted); font-size: .72rem; margin-bottom: .25rem; }
+  .contact-link strong { color: var(--white); font-size: .9rem; font-weight: 600; overflow-wrap: anywhere; }
+  .contact-arrow { margin-left: auto; color: #cdb4ff; font-size: 1.15rem; }
+</style>

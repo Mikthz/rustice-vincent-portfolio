@@ -1,0 +1,132 @@
+---
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+// Only technologies represented in the portfolio's current skills and projects.
+const technologies = [
+  { name: "Python", logo: "python.svg" },
+  { name: "JavaScript", logo: "javaScript.svg" },
+  { name: "HTML5", logo: "HTML5.svg" },
+  { name: "CSS3", logo: "CSS3.svg" },
+  { name: "Tailwind CSS", logo: "tailwindcss.svg" },
+  { name: "Django", logo: "django.svg" },
+  { name: "PostgreSQL", logo: "postgresql.svg" },
+  { name: "MySQL", logo: "mysql.svg" },
+  { name: "MariaDB", logo: "mariadb.svg" },
+  { name: "OpenCV", logo: "opencv.svg" },
+  { name: "MediaPipe", logo: "mediapipe.svg" },
+];
+---
+
+<section class="tech-marquee-shell" aria-label="Technologies used in coursework and projects">
+  <div class="tech-marquee-heading page-width">
+    <span class="section-kicker">Tools I've explored</span>
+    <span class="tech-marquee-caption">Learning through hands-on projects</span>
+  </div>
+  <div class="tech-marquee" tabindex="0" aria-label="Scrolling technology list. Pause by hovering or focusing this area.">
+    <div class="tech-marquee-track">
+      {[...technologies, ...technologies].map((technology, index) => (
+        <div class="tech-marquee-item" aria-hidden={index >= technologies.length ? "true" : undefined}>
+          <img
+            src={`${baseUrl}svg/${technology.logo}`}
+            alt=""
+            width="30"
+            height="30"
+            loading={index < technologies.length ? "eager" : "lazy"}
+            decoding="async"
+          />
+          <span>{technology.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-marquee-shell {
+    position: relative;
+    overflow: hidden;
+    padding: 1.3rem 0 2rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tech-marquee-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .tech-marquee-heading .section-kicker { margin: 0; }
+  .tech-marquee-caption { color: var(--muted); font-size: .72rem; }
+
+  .tech-marquee {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+
+  .tech-marquee:focus-visible {
+    outline: 1px solid var(--sec);
+    outline-offset: 4px;
+  }
+
+  .tech-marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: technology-marquee 48s linear infinite;
+    will-change: transform;
+  }
+
+  .tech-marquee-item {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: .72rem;
+    padding: .2rem 2.1rem;
+    color: var(--white-icon);
+    font-size: .92rem;
+    font-weight: 550;
+    white-space: nowrap;
+    opacity: .78;
+    transition: opacity .2s ease, color .2s ease;
+  }
+
+  .tech-marquee-item img {
+    display: block;
+    width: 1.7rem;
+    height: 1.7rem;
+    flex: 0 0 1.7rem;
+    object-fit: contain;
+    filter: saturate(.86);
+    transition: transform .25s ease, filter .25s ease;
+  }
+
+
+  .tech-marquee-item:hover { color: white; opacity: 1; }
+  .tech-marquee-item:hover img { transform: translateY(-3px) scale(1.08); filter: saturate(1.2); }
+
+  .tech-marquee:hover .tech-marquee-track,
+  .tech-marquee:focus-visible .tech-marquee-track { animation-play-state: paused; }
+
+  @keyframes technology-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @media (max-width: 600px) {
+    .tech-marquee-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }
+    .tech-marquee-item { padding-inline: 1.25rem; font-size: .84rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-marquee-track { animation: none; }
+    .tech-marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+  }
+</style>

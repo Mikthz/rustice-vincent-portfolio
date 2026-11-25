@@ -1,0 +1,215 @@
+---
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Objectives", href: "#objectives" },
+  { label: "Education", href: "#education" },
+  { label: "Technical", href: "#technical-skills" },
+  { label: "Soft Skills", href: "#soft-skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certificates", href: "#certificates" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<div class="nav-shell" id="nav-shell">
+  <nav id="main-nav" aria-label="Main navigation">
+    <ul>
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .nav-shell {
+    position: fixed;
+    z-index: 100;
+    top: 1.15rem;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    width: min(94vw, 1120px);
+    padding-inline: 0.15rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+    transition: width 0.45s cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+
+  nav {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid transparent;
+    border-radius: 1.25rem;
+    background: transparent;
+    box-shadow: none;
+    pointer-events: auto;
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      border-radius 0.35s ease,
+      box-shadow 0.35s ease,
+      backdrop-filter 0.35s ease;
+  }
+
+  .nav-shell.is-scrolled {
+    width: min(92vw, 860px);
+  }
+
+  .nav-shell.is-scrolled nav {
+    border-color: #ffffff1a;
+    border-radius: 999px;
+    background: #171717eF;
+    box-shadow: 0 12px 40px #00000045;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  ul {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.1rem;
+    margin: 0;
+    padding: 0.5rem 0.65rem;
+    list-style: none;
+  }
+
+  a {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    border-radius: 999px;
+    padding: 0.62rem 0.68rem;
+    color: #b9b6c0;
+    font-size: 0.74rem;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  a:hover,
+  a.active {
+    color: #fff;
+    background: #a476ff24;
+  }
+
+  @media (max-width: 900px) and (min-width: 768px) {
+    .nav-shell {
+      width: 96vw;
+    }
+
+    .nav-shell.is-scrolled {
+      width: min(92vw, 820px);
+    }
+
+    ul {
+      gap: 0;
+      padding-inline: 0.35rem;
+    }
+
+    a {
+      padding-inline: 0.38rem;
+      font-size: 0.66rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .nav-shell,
+    .nav-shell.is-scrolled {
+      top: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0;
+      transform: none;
+    }
+
+    nav,
+    .nav-shell.is-scrolled nav {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      border-color: #ffffff1a;
+      border-radius: 1rem 1rem 0 0;
+      border-bottom: 0;
+      border-left: 0;
+      border-right: 0;
+      background: #171717f5;
+      box-shadow: 0 -8px 30px #00000035;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    ul {
+      width: max-content;
+      min-width: 100%;
+      justify-content: flex-start;
+      gap: 0.1rem;
+      padding: 0.6rem 0.55rem max(0.65rem, env(safe-area-inset-bottom));
+    }
+
+    a {
+      padding: 0.55rem 0.62rem;
+      font-size: 0.7rem;
+    }
+  }
+</style>
+
+<script>
+  const navShell = document.querySelector<HTMLElement>("#nav-shell");
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("#main-nav a[href^='#']"));
+  const sections = navLinks
+    .map((link) => document.getElementById(link.hash.slice(1)))
+    .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+  const setActiveLink = (sectionId: string) => {
+    navLinks.forEach((link) => {
+      const active = link.hash === `#${sectionId}`;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  // Keep the header open and transparent near the top, then adapt it into a compact glass pill.
+  let scrollFrame = 0;
+  const updateHeaderOnScroll = () => {
+    navShell?.classList.toggle("is-scrolled", window.scrollY > 24);
+    scrollFrame = 0;
+  };
+
+  const requestHeaderUpdate = () => {
+    if (scrollFrame === 0) scrollFrame = window.requestAnimationFrame(updateHeaderOnScroll);
+  };
+
+  updateHeaderOnScroll();
+  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+
+  setActiveLink("about");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target instanceof HTMLElement) setActiveLink(visible.target.id);
+      },
+      { rootMargin: "-22% 0px -58% 0px", threshold: [0, 0.15, 0.35, 0.6] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => setActiveLink(link.hash.slice(1)));
+  });
+</script>

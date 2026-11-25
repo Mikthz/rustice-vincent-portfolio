@@ -1,0 +1,110 @@
+---
+const portraitSrc = `${import.meta.env.BASE_URL}images/rustice-vincent-portrait.webp`;
+---
+
+<section id="about" class="page-width pt-36 pb-20 md:pt-44 md:pb-28">
+  <div class="max-w-4xl">
+    <div class="hero-identity">
+      <div class="hero-title-block">
+        <p class="section-kicker">Information Technology Student</p>
+        <h1 class="hero-title">
+          Hi, I'm <span class="shiny-sec">Rustice Vincent Caldeo.</span>
+        </h1>
+      </div>
+      <div class="hero-portrait-frame">
+        <img
+          class="hero-portrait"
+          src={portraitSrc}
+          alt="Professional portrait of Rustice Vincent Caldeo wearing glasses and a dark suit"
+          width="1254"
+          height="1254"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <p class="mt-6 max-w-3xl text-lg md:text-2xl leading-relaxed text-[var(--white-icon)]">
+      IT student with an interest in software development, databases, and practical technology projects.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#projects" class="inline-flex items-center gap-2 rounded-full bg-[var(--sec)] px-5 py-3 text-sm font-semibold text-[#17121f] transition hover:-translate-y-0.5 hover:bg-[#bd9aff]">
+        Explore my projects <span aria-hidden="true">↗</span>
+      </a>
+      <a href="#contact" class="inline-flex items-center rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-[var(--white)] transition hover:border-[var(--sec)] hover:bg-[#a476ff12]">
+        Get in touch
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-14 grid gap-8 border-t border-[var(--line)] pt-10 md:grid-cols-[1fr_1.3fr] md:gap-16">
+    <div>
+      <p class="section-kicker">About Me</p>
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight tracking-[-.04em]">Curious about technology. Focused on learning by building.</h2>
+    </div>
+    <div class="section-copy space-y-4">
+      <p>
+        I am an Information Technology student at Filamer Christian University with an interest in software development, database management, and technology. I enjoy exploring different areas of IT and developing projects that combine functionality, creativity, and practical problem-solving.
+      </p>
+      <p>
+        Throughout my academic journey, I have gained experience working with programming languages, web development technologies, and database systems through academic and personal projects. I also enjoy learning new tools and technologies that help me improve my technical abilities and understanding of software development.
+      </p>
+      <p>
+        As I continue to develop my skills, I aim to gain more hands-on experience, take on new challenges, and grow into a capable IT professional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-identity {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(6.75rem, 21vw, 11.5rem);
+    align-items: center;
+    gap: clamp(1rem, 3.5vw, 2.5rem);
+  }
+
+  .hero-title-block { min-width: 0; }
+
+  .hero-title {
+    margin: 0;
+    color: var(--white);
+    font-size: clamp(2rem, 6.5vw, 5.6rem);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -.065em;
+    overflow-wrap: break-word;
+  }
+
+  .hero-portrait-frame {
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 4px;
+    border: 1px solid #c3a4ff;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #c4a6ff, #604487 70%, #2b2337);
+    box-shadow: 0 0 0 7px #a476ff16, 0 18px 48px #00000045;
+  }
+
+  .hero-portrait {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 38%;
+    background: #25212b;
+  }
+
+  @media (max-width: 480px) {
+    .hero-identity {
+      grid-template-columns: minmax(0, 1fr) 6.5rem;
+      gap: .85rem;
+    }
+
+    .hero-title { font-size: clamp(1.85rem, 8vw, 2.45rem); }
+    .hero-title-block .section-kicker { font-size: .58rem; letter-spacing: .12em; }
+    .hero-portrait-frame { padding: 3px; }
+  }
+</style>
